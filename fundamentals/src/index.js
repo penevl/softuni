@@ -1,7 +1,11 @@
-function solve(grade) {
-    if (grade >= 5.5) {
-        console.log("Excellent");
+function solve(country) {
+    const englishSpoken = ["England", "USA"];
+    const spanishSpoken = ["Spain", "Argentina", "Mexico"];
+    if (englishSpoken.includes(country)) {
+        console.log("English");
+    } else if (spanishSpoken.includes(country)) {
+        console.log("Spanish");
     } else {
-        console.log("Not excellent");
+        console.log("unknown");
     }
 }
