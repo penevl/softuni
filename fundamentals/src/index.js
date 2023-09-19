@@ -1,3 +1,7 @@
-function solve(name, age, grade) {
-    console.log(`Name: ${name}, Age: ${age}, Grade: ${grade.toFixed(2)}`);
+function solve(grade) {
+    if (grade >= 5.5) {
+        console.log("Excellent");
+    } else {
+        console.log("Not excellent");
+    }
 }
