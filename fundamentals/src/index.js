@@ -1,10 +1,8 @@
-/**Test JSDoc support
- *
- * @param {Number} n
- */
-function solve(n) {
-    while (n >= 1) {
+function solve(m, n) {
+    while (n >= m) {
         console.log(n);
         n--;
     }
 }
+
+solve(6, 2)
