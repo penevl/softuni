@@ -1,11 +1,12 @@
-function solve(year) {
-    if (year % 4 == 0 && !(year % 100 == 0)) {
-        console.log("yes");
-        return;
+function solve(m, n) {
+    var result = "";
+    var sum = 0;
+    for (let index = m; index <= n; index++) {
+        result = result + index + " ";
+        sum += index;
     }
-    if (year % 400 == 0) {
-        console.log("yes");
-        return;
-    }
-    console.log("no");
+    console.log(result);
+    console.log(`Sum: ${sum}`);
 }
+
+solve(5, 10);
