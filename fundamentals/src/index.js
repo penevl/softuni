@@ -1,3 +1,3 @@
-function solve(num) {
-    console.log(num * 2);
+function solve(name, age, grade) {
+    console.log(`Name: ${name}, Age: ${age}, Grade: ${grade.toFixed(2)}`);
 }
