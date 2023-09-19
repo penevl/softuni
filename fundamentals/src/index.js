@@ -1,5 +1,10 @@
-function solve() {
-    for (let index = 1; index <= 100; index++) {
-        if (index % 3 == 0) console.log(index);
+/**Test JSDoc support
+ *
+ * @param {Number} n
+ */
+function solve(n) {
+    while (n >= 1) {
+        console.log(n);
+        n--;
     }
 }
