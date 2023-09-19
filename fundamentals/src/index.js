@@ -1,19 +1,5 @@
-function solve(n) {
-    var count = 0;
-    var counter = 0;
-    var shouldRun = true;
-    var sum = 0;
-    while (shouldRun) {
-        counter++;
-        // console.log(count, counter, sum)
-        if (!(counter % 2 == 0)) {
-            count++;
-            console.log(counter);
-            sum += counter;
-        }
-        if (count == n) {
-            shouldRun = false;
-        }
-    }
-    console.log(`Sum: ${sum}`);
+function solve(num, precission) {
+    if (precission > 15) precission = 15;
+
+    console.log(parseFloat(num.toFixed(precission)));
 }
