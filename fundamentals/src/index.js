@@ -1,3 +1,3 @@
 function solve(a) {
-    console.log((a / 1000).toFixed(2));
+    console.log((a * 1.31).toFixed(3));
 }
