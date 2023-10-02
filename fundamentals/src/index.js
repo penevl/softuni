@@ -1,3 +1,9 @@
-function solve(a, b, c) {
-    console.log(`${String(c)} ${String(b)} ${String(a)}`);
+function solve(a) {
+    a = String(a);
+    if (a == a.toUpperCase()) {
+        console.log("upper-case");
+    }
+    if (a == a.toLowerCase()) {
+        console.log("lower-case");
+    }
 }
