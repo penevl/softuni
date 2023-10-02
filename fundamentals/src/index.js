@@ -1,8 +1,4 @@
-function solve(n) {
-    let sum = 0;
-    while (n > 0) {
-        sum += n % 10;
-        n = Math.floor(n / 10);
-    }
-    console.log(sum);
+function solve(a, b, c) {
+    const result = String(a) + String(b) + String(c);
+    console.log(result);
 }
