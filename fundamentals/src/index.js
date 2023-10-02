@@ -1,23 +1,31 @@
 /**
  *
- * @param {String[]} b
- * @param {String[]} a
+ * @param {Number[]} b
+ * @param {Number} a
  */
 function solve(a, b) {
-    let newArr = [];
-    let output = "";
-    a.forEach((element, index) => {
-        if (index % 2 == 0) {
-            newArr.push(Number(element) + Number(b[index]));
-        } else {
-            newArr.push(element + b[index]);
+    let out = "";
+    if (a.length >= b) {
+        for (let i = b; i < a.length; i++) {
+            out += a[i] + " ";
         }
-    });
-    newArr.forEach((element) => {
-        output += element + " - ";
-    });
-    console.log(output.substring(0, output.length - 3));
+        if (b > 0) {
+            for (let i = 0; i < b; i++) {
+                out += a[i] + " ";
+            }
+        }
+    } else {
+        let diff = b - a.length;
+        for (let i = diff; i < a.length; i++) {
+            out += a[i] + " ";
+        }
+        for (let i = 0; i < diff; i++) {
+            out += a[i] + " ";
+        }
+    }
+    console.log(out);
 }
 
-solve(["5", "15", "23", "56", "35"], ["17", "22", "87", "36", "11"]);
-solve(["13", "12312", "5", "77", "4"], ["22", "333", "5", "122", "44"]);
+solve([51, 47, 32, 61, 21], 2);
+solve([32, 21, 61, 1], 4);
+solve([2, 4, 15, 31], 10);
