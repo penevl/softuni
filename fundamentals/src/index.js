@@ -1,4 +1,3 @@
 function solve(a, b, c) {
-    const result = String(a) + String(b) + String(c);
-    console.log(result);
+    console.log(`Town ${a} has population of ${b} and area ${c} square km.`);
 }
