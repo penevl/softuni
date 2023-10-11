@@ -3,31 +3,34 @@
  * @param {Number[]} arr
  */
 function solve(arr) {
+    let longestSequence = [];
+    let currentSequence = [];
+    let currentElement = arr[0];
+
     for (let i = 0; i < arr.length; i++) {
-        let sumRight = 0;
-        let sumLeft = 0;
-        for (let x = 0; x < i; x++) {
-            sumLeft += arr[x];
-        }
-        for (let x = i + 1; x < arr.length; x++) {
-            sumRight += arr[x];
-        }
-        if (sumLeft == 0 && sumRight == 0) {
-            console.log(i);
-            break;
-        }
-        if (sumLeft == sumRight) {
-            console.log(i);
-            break;
-        }
-        if (i == arr.length - 1) {
-            console.log("no");
+        if (arr[i] === currentElement) {
+            currentSequence.push(arr[i]);
+        } else {
+            if (currentSequence.length > longestSequence.length) {
+                longestSequence = currentSequence;
+            }
+            currentSequence = [arr[i]];
+            currentElement = arr[i];
         }
     }
+
+    if (currentSequence.length > longestSequence.length) {
+        longestSequence = currentSequence;
+    }
+
+    let output = "";
+    longestSequence.forEach((element) => {
+        output += element += " ";
+    });
+    console.log(output);
 }
 
-solve([1, 2, 3, 3]);
-solve([1, 2]);
-solve([1]);
-solve([1, 2, 3]);
-solve([10, 5, 5, 99, 3, 4, 2, 5, 1, 1, 4]);
+solve([2, 1, 1, 2, 3, 3, 2, 2, 2, 1]);
+solve([1, 1, 1, 2, 3, 1, 3, 3]);
+solve([4, 4, 4, 4]);
+solve([0, 1, 1, 5, 2, 2, 6, 3, 3]);
