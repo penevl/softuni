@@ -1,21 +1,21 @@
 function solve(a) {
-    if (a <= 1) {
-        return false;
+    if (a == 100) {
+        console.log("100% Complete!");
+        return;
     }
 
-    let divisorSum = 1;
-    for (let i = 2; i <= Math.sqrt(a); i++) {
-        if (a % i === 0) {
-            divisorSum += i;
-            if (i !== a / i) {
-                divisorSum += a / i;
-            }
-        }
+    let b = "";
+    let c = "";
+
+    for (let i = 0; i < a / 10; i++) {
+        b += "%";
     }
 
-    if (divisorSum === a) {
-        console.log("We have a perfect number!");
-    } else {
-        console.log("It's not so perfect.");
+    for (let i = 0; i < 10 - a / 10; i++) {
+        c += ".";
     }
+
+    console.log(`
+${a}% [${b}${c}]\nStill loading...
+    `);
 }
