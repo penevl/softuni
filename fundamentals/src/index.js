@@ -1,7 +1,17 @@
-function subtract(a, b, c) {
-    const sum = (a, b) => {
-        return a + b;
-    };
+function solve(a, b) {
+    let start = a.charCodeAt(0);
+    let end = b.charCodeAt(0);
+    let final = "";
 
-    console.log(sum(a, b) - c);
+    if (start > end) {
+        var temp = start;
+        start = end;
+        end = temp;
+    }
+
+    for (var i = start + 1; i < end; i++) {
+        var character = String.fromCharCode(i);
+        final += character + " ";
+    }
+    console.log(final);
 }
