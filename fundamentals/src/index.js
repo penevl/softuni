@@ -1,17 +1,17 @@
-function solve(a, b) {
-    let start = a.charCodeAt(0);
-    let end = b.charCodeAt(0);
-    let final = "";
+function solve(a) {
+    let sumEven = 0;
+    let sumOdd = 0;
 
-    if (start > end) {
-        var temp = start;
-        start = end;
-        end = temp;
-    }
+    const numStr = a.toString();
 
-    for (var i = start + 1; i < end; i++) {
-        var character = String.fromCharCode(i);
-        final += character + " ";
+    for (let i = 0; i < numStr.length; i++) {
+        const digit = parseInt(numStr[i]);
+
+        if (digit % 2 === 0) {
+            sumEven += digit;
+        } else {
+            sumOdd += digit;
+        }
     }
-    console.log(final);
+    console.log(`Odd sum = ${sumOdd}, Even sum = ${sumEven}`);
 }
