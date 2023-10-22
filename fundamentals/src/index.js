@@ -1,53 +1,48 @@
-function solve(commandString) {
-    let commands = commandString[0].split("||");
-    let fuel = Number(commandString[1]);
-    let ammo = Number(commandString[2]);
-    commands.forEach((command) => {
-        const commandName = command.split(" ")[0];
-        const commandArgs = Number(command.split(" ")[1]);
-
-        if (commandName.toLowerCase() == "travel") {
-            fuel -= commandArgs;
-
-            if (fuel > 0) {
-                console.log(
-                    `The spaceship travelled ${commandArgs} light-years.`
-                );
+function solve(priceRatings, entryPoint, itemType) {
+    const calculateLeftDamage = (rating, entry, type) => {
+        let damage = 0;
+        for (let i = entry - 1; i >= 0; i--) {
+            if (
+                (type === "cheap" && rating[i] < rating[entry]) ||
+                (type === "expensive" && rating[i] >= rating[entryPoint])
+            ) {
+                damage += rating[i];
             } else {
-                console.log("Mission failed.");
-                return;
+                break;
             }
-        } else if (commandName.toLowerCase() == "enemy") {
-            if (ammo >= commandArgs) {
-                ammo -= commandArgs;
-                console.log(`An enemy with ${commandArgs} armour is defeated.`);
-            } else {
-                fuel -= commandArgs * 2;
-
-                if (fuel > 0) {
-                    console.log(
-                        `An enemy with ${commandArgs} armour is outmaneuvered.`
-                    );
-                } else {
-                    console.log("Mission failed.");
-                    return;
-                }
-            }
-        } else if (commandName.toLowerCase() == "repair") {
-            fuel += commandArgs;
-            ammo += commandArgs * 2;
-            console.log(`Ammunitions added: ${commandArgs * 2}.`);
-            console.log(`Fuel added: ${commandArgs}.`);
-        } else {
-            console.log(
-                `You have reached ${commandName}, all passengers are safe.`
-            );
         }
-    });
+        return damage;
+    };
+
+    const calculateRightDamage = (rating, entry, type) => {
+        let damage = 0;
+        for (let i = entry + 1; i < rating.length; i++) {
+            if (
+                (type === "cheap" && rating[i] < rating[entry]) ||
+                (type === "expensive" && rating[i] >= rating[entry])
+            ) {
+                damage += rating[i];
+            } else {
+                break;
+            }
+        }
+        return damage;
+    };
+
+    const leftDamage = calculateLeftDamage(priceRatings, entryPoint, itemType);
+    const rightDamage = calculateRightDamage(
+        priceRatings,
+        entryPoint,
+        itemType
+    );
+
+    if (leftDamage >= rightDamage) {
+        console.log(`Left - ${leftDamage}`);
+    } else {
+        console.log(`Right - ${rightDamage}`);
+    }
 }
 
-solve([
-    "Travel 20||Enemy 50||Enemy 50||Enemy 10||Repair 15||Enemy 50||Titan",
-    "60",
-    "100",
-]);
+solve([1, 5, 1], 1, "cheap");
+solve([5, 10, 12, 5, 4, 20], 3, "cheap");
+solve([-2, 2, 1, 5, 9, 3, 2, -2, 1, -1, -3, 3], 7, "expensive");
