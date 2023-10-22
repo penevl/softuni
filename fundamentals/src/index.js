@@ -1,21 +1,17 @@
-function solve(a) {
-    if (a == 100) {
-        console.log("100% Complete!");
-        return;
-    }
+function solve(a, b) {
+    const factorial = (num) => {
+        if (num === 0) {
+            return 1;
+        }
+        let result = 1;
+        for (let i = 1; i <= num; i++) {
+            result *= i;
+        }
+        return result;
+    };
 
-    let b = "";
-    let c = "";
-
-    for (let i = 0; i < a / 10; i++) {
-        b += "%";
-    }
-
-    for (let i = 0; i < 10 - a / 10; i++) {
-        c += ".";
-    }
-
-    console.log(`
-${a}% [${b}${c}]\nStill loading...
-    `);
+    const result1 = factorial(a);
+    const result2 = factorial(b);
+    const divisionResult = (result1 / result2).toFixed(2);
+    console.log(divisionResult);
 }
