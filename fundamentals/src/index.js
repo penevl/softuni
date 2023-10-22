@@ -1,44 +1,53 @@
-/**
- *
- * @param {any[]} a
- */
-function solve(a) {
-    a.splice(0, 1);
-    let cityNum = 0;
-    let totalProfit = 0;
-    let cities = [];
-    while (a != 0) {
-        cityNum++;
-        cities.push({
-            name: a[0],
-            profit: Number(a[1]),
-            expenses: Number(a[2]),
-            city: cityNum,
-        });
-        a.splice(0, 3);
-    }
-    cities.forEach((city) => {
-        if (city.city % 3 == 0) city.expenses = city.expenses * 1.5;
-        if (city.city % 5 == 0) city.profit = city.profit * 0.9;
-        console.log(
-            `In ${city.name} Burger Bus earned ${(
-                city.profit - city.expenses
-            ).toFixed(2)} leva.`
-        );
-        totalProfit += city.profit - city.expenses;
+function solve(commandString) {
+    let commands = commandString[0].split("||");
+    let fuel = Number(commandString[1]);
+    let ammo = Number(commandString[2]);
+    commands.forEach((command) => {
+        const commandName = command.split(" ")[0];
+        const commandArgs = Number(command.split(" ")[1]);
+
+        if (commandName.toLowerCase() == "travel") {
+            fuel -= commandArgs;
+
+            if (fuel > 0) {
+                console.log(
+                    `The spaceship travelled ${commandArgs} light-years.`
+                );
+            } else {
+                console.log("Mission failed.");
+                return;
+            }
+        } else if (commandName.toLowerCase() == "enemy") {
+            if (ammo >= commandArgs) {
+                ammo -= commandArgs;
+                console.log(`An enemy with ${commandArgs} armour is defeated.`);
+            } else {
+                fuel -= commandArgs * 2;
+
+                if (fuel > 0) {
+                    console.log(
+                        `An enemy with ${commandArgs} armour is outmaneuvered.`
+                    );
+                } else {
+                    console.log("Mission failed.");
+                    return;
+                }
+            }
+        } else if (commandName.toLowerCase() == "repair") {
+            fuel += commandArgs;
+            ammo += commandArgs * 2;
+            console.log(`Ammunitions added: ${commandArgs * 2}.`);
+            console.log(`Fuel added: ${commandArgs}.`);
+        } else {
+            console.log(
+                `You have reached ${commandName}, all passengers are safe.`
+            );
+        }
     });
-    console.log(`Burger Bus total profit: ${totalProfit.toFixed(2)} leva.`);
 }
 
 solve([
-    "3",
-    "Sofia",
-    "895.67",
-    "213.50",
-    "Plovdiv",
-    "2563.20",
-    "890.26",
-    "Burgas",
-    "2360.55",
-    "600.00",
+    "Travel 20||Enemy 50||Enemy 50||Enemy 10||Repair 15||Enemy 50||Titan",
+    "60",
+    "100",
 ]);
